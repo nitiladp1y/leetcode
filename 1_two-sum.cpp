@@ -33,3 +33,72 @@ public:
         }
     }
 };
+
+
+/* 先排序怎么样 快排  52ms*/
+class Solution {
+public:
+	void quickSort(vector<int>& nums, int left, int right)
+	{
+		int i = left;
+		int j = right;
+		int temp = nums[left];
+		if (left >= right) return;
+		while (i != j)
+		{
+			while (i<j && nums[j] >= temp)	j--;
+			if (j>i) nums[i] = nums[j];
+			while (i<j&&nums[i] <= temp) i++;
+			if (i<j) nums[j] = nums[i];
+		}
+		nums[i] = temp;
+		quickSort(nums, left, i - 1);
+		quickSort(nums, i + 1, right);
+	}
+	vector<int> twoSum(vector<int>& nums, int target) {
+		vector<int> ret;
+		multimap<int,int> save;
+		auto size = nums.size();
+		for (auto i = 0; i < size; ++i)
+		{
+			save.insert(pair<int, int>(nums[i],i));
+		}
+		quickSort(nums, 0, size - 1);
+
+		int i = 0; 
+		int j = size - 1;
+		while(i < j)
+		{
+			int tmp = nums[i] + nums[j];
+			if (tmp == target)
+			{
+				if (nums[i] == nums[j])
+				{
+					auto it = save.find(nums[i]);
+					ret.push_back(it->second);
+					it++;
+					ret.push_back(it->second);
+				}
+				else
+				{
+					ret.push_back(save.find(nums[i])->second);
+					ret.push_back(save.find(nums[j])->second);
+				}
+				return ret;
+			}
+			else if (tmp > target)
+			{
+				j--;
+			}
+			else
+			{
+				i++;
+			}
+		}
+
+	}
+};
+
+
+/* 两遍哈希表 */
+/* 一遍哈希表 */
