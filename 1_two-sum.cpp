@@ -13,7 +13,7 @@
 */
 
 
-/* 164 ms*/
+/* 112 ms*/
 class Solution {
 public:
     vector<int> twoSum(vector<int>& nums, int target) {
@@ -27,9 +27,9 @@ public:
                 {
                     ret.push_back(i);
                     ret.push_back(j);
+                    return ret;
                 }
             }
         }
-        return ret;
     }
 };
