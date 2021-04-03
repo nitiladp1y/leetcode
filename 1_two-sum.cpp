@@ -102,3 +102,24 @@ public:
 
 /* 两遍哈希表 */
 /* 一遍哈希表 */
+/* 8 ms */
+class Solution {
+public:
+    vector<int> twoSum(vector<int>& nums, int target) {
+		vector<int> ret;
+		map<int,int> save;
+		auto size = nums.size();
+		for (auto i = 0; i < size; ++i)
+		{
+			auto it = save.find(target - nums[i]);
+			if (it != save.end())
+			{
+				ret.push_back(it->second);
+				ret.push_back(i);
+				return ret;
+			}	
+			save.insert(pair<int, int>(nums[i],i));
+		}
+		return ret;
+    }
+};
