@@ -26,19 +26,21 @@ public:
     ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
     	ListNode *head = NULL;
     	ListNode *tail = NULL;
+        ListNode *tmp_l1 = l1;
+        ListNode *tmp_l2 = l2;
     	bool carry = false;
-        while(l1 || l2 || carry)
+        while(tmp_l1 || tmp_l2 || carry)
         {
         	int value = 0;
-        	if (l1)
+        	if (tmp_l1)
         	{
-        		value += l1->val;
-        		l1 = l1->next;
+        		value += tmp_l1->val;
+        		tmp_l1 = tmp_l1->next;
         	}
-			if (l2)
+			if (tmp_l2)
         	{
-        		value += l2->val;
-        		l2 = l2->next;
+        		value += tmp_l2->val;
+        		tmp_l2 = tmp_l2->next;
         	}
         	if(carry)
         	{
